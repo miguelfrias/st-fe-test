@@ -1,0 +1,29 @@
+{
+  "name": "Disney Test",
+  "description": "Disney test app",
+  "version": "0.0.1",
+  "license": "MIT",
+  "private": true,
+  "authors": [
+    "Miguel Frias <miguel.frias@globant.com>"
+  ],
+  "main": "app/scripts/app.js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.4.7",
+    "angular-route": "1.4.7",
+    "angular-resource": "1.4.7",
+    "angular-sanitize": "1.4.7",
+    "angular-cookies": "1.4.7",
+    "angular-animate": "1.4.7",
+    "angular-touch": "1.4.7",
+    "bootstrap": "3.3.5",
+    "angular-bootstrap": "0.14.2"
+  }
+}

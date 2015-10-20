@@ -1,0 +1,48 @@
+.module {
+    padding: 1em;
+}
+
+.header {
+    background-color: #F5F5F5;
+}
+
+.results-info {
+    border-top: solid 1px #907D7D;
+    border-bottom: solid 1px #907D7D;
+}
+
+.searchInput {
+    display: block;
+    max-width: 80%;
+    text-align: left;
+    margin: 0 auto;
+}
+
+article {
+    padding: 1em 0;
+
+    h1.title {
+        display: inline-block;
+        margin-top: 0;
+        margin-right: 1em;
+    }
+
+    .label {
+        font-size: 1em;
+    }
+
+    .img-container {
+        text-align: center;
+    }
+
+    img {
+        width: 150px;
+    }
+}
+
+.buttons {
+    .btn {
+        box-shadow: 2px 2px 2px #ccc;
+        margin-right: 1em;
+    }
+}

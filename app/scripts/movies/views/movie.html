@@ -1,0 +1,31 @@
+<br />
+<br />
+<br />
+<br />
+<article class="row article" ng-if="!notFound">
+    <div class="img-container col-md-3">
+        <img ng-src="{{ movie.image }}" alt="" />
+    </div>
+    <div class="main-info col-md-9">
+        <div>
+            <h1 class="title" ng-bind="movie.title">Iron Main</h1>
+            <span class="label label-info" ng-bind="movie.rating | uppercase">PG-13</span>
+        </div>
+        <p>
+            <span>Release Date</span>
+            <span ng-bind="movie.date">April 30, 2008</span>
+        </p>
+        <p>
+            <span>Run Time</span>
+            <span ng-bind="movie.run_time">2hrs 6mins</span>
+        </p>
+        <div class="buttons">
+            <button class="btn btn-default">Add to Watchlist</button>
+            <button class="btn btn-default">Preview</button>
+            <button class="btn btn-default">Play</button>
+        </div>
+    </div>
+</article>
+<article ng-if="notFound">
+    <h1>Ooops! Movie not found</h1>
+</article>

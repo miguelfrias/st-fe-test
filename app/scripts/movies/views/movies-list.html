@@ -1,0 +1,56 @@
+<header class="row header module">
+    <input type="text" ng-model="searchQuery" placeholder="Search" class="form-control searchInput">
+</header>
+<div class="row results-info module">
+    <div class="col-sm-4">
+        <span ng-bind="currentPage"></span>
+        -
+        <span ng-bind="limit"></span>
+        of
+        <span ng-bind="totalResults"></span>
+        results
+    </div>
+
+    <div class="col-sm-4 col-sm-offset-4 text-right">
+        <span>Sort By</span>
+        <select name="sort" id="sort">
+            <option value="date">Date</option>
+            <option value="name">Name</option>
+        </select>
+    </div>
+</div>
+<main class="row module main">
+    <article class="row article" ng-repeat="movie in movies">
+        <div class="img-container col-md-3">
+            <img class="img" ng-src="{{ movie.image }}" alt="" />
+        </div>
+        <div class="col-md-9">
+            <div class="main-info row">
+                <div>
+                    <h1 class="title" >
+                        <a ng-href="#/movie/{{ movie.slug }}" ng-bind="movie.title"></a>
+                    </h1>
+                    <span class="label label-info" ng-bind="movie.rating | uppercase">PG-13</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <button>Add to Watchlist</button>
+                </div>
+                <div class="more-info col-md-6">
+                    <div>
+                        <span>Release Date</span>
+                        <span ng-bind="movie.date">April 30, 2008</span>
+                    </div>
+                    <div>
+                        <span>Run Time</span>
+                        <span ng-bind="movie.run_time">2hrs 6mins</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+</main>
+<div class="pager">
+    <uib-pager total-items="totalResults" ng-model="currentPage"></uib-pager>
+</div>
