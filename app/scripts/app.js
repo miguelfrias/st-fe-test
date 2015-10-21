@@ -9,6 +9,7 @@ angular.module('disney', [
   'ngSanitize',
   'ngTouch',
   'ui.bootstrap',
+  'disney.Filters',
   'disney.Movies'
 ]).
 config(function($routeProvider) {
