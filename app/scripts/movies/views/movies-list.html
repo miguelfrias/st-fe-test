@@ -51,6 +51,6 @@
         </div>
     </article>
 </main>
-<div class="pager">
+<div class="pager" ng-show="totalResults > movies.length">
     <uib-pager total-items="totalResults" items-per-page="config.limit" ng-model="currentPage"></uib-pager>
 </div>
