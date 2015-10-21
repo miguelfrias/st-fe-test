@@ -2,10 +2,10 @@
     <input type="text" ng-model="searchQuery" placeholder="Search" class="form-control searchInput">
 </header>
 <div class="row results-info module">
-    <div class="col-sm-4">
+    <div class="col-sm-4" ng-if="movies">
         <span ng-bind="currentPage"></span>
         -
-        <span ng-bind="limit"></span>
+        <span ng-bind="config.limit"></span>
         of
         <span ng-bind="totalResults"></span>
         results
@@ -13,9 +13,9 @@
 
     <div class="col-sm-4 col-sm-offset-4 text-right">
         <span>Sort By</span>
-        <select name="sort" id="sort">
+        <select name="sort" id="sort" ng-model="config.sort">
             <option value="date">Date</option>
-            <option value="name">Name</option>
+            <option value="title">Name</option>
         </select>
     </div>
 </div>

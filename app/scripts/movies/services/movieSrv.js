@@ -3,8 +3,6 @@
 angular.module('disney.Movies').service('movieSrv', function($http, $log) {
     var movieSrv = this;
 
-    $log.log('Movie service');
-
     movieSrv.search = function () {
         return $http.get('data/data.json').then(function onSuccess(data) {
             return data.data;
