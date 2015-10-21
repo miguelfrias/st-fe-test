@@ -30,7 +30,7 @@
                     <h1 class="title" >
                         <a ng-href="#/movie/{{ movie.slug }}" ng-bind="movie.title"></a>
                     </h1>
-                    <span class="label label-info" ng-bind="movie.rating | uppercase">PG-13</span>
+                    <span class="label label-info" ng-bind="movie.rating | uppercase"></span>
                 </div>
             </div>
             <div class="row">
@@ -40,11 +40,11 @@
                 <div class="more-info col-md-6">
                     <div>
                         <span>Release Date</span>
-                        <span ng-bind="movie.date">April 30, 2008</span>
+                        <span ng-bind="movie.date | date: 'mediumDate'"></span>
                     </div>
                     <div>
                         <span>Run Time</span>
-                        <span ng-bind="movie.run_time">2hrs 6mins</span>
+                        <span ng-bind="movie.run_time"></span>
                     </div>
                 </div>
             </div>

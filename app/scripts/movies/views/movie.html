@@ -9,15 +9,15 @@
     <div class="main-info col-md-9">
         <div>
             <h1 class="title" ng-bind="movie.title">Iron Main</h1>
-            <span class="label label-info" ng-bind="movie.rating | uppercase">PG-13</span>
+            <span class="label label-info" ng-bind="movie.rating | uppercase"></span>
         </div>
         <p>
             <span>Release Date</span>
-            <span ng-bind="movie.date">April 30, 2008</span>
+            <span ng-bind="movie.date | date: 'mediumDate'"></span>
         </p>
         <p>
             <span>Run Time</span>
-            <span ng-bind="movie.run_time">2hrs 6mins</span>
+            <span ng-bind="movie.run_time"></span>
         </p>
         <div class="buttons">
             <button class="btn btn-default">Add to Watchlist</button>
