@@ -2,6 +2,7 @@
 
 angular.module('disney.Movies').controller('moviesListCtrl', function($scope, $filter, $log, movieSrv) {
     var moviesListCtrl = this;
+    var pager = 0;
 
     $scope.searchQuery = '';
     $scope.movies = [];
@@ -15,30 +16,31 @@ angular.module('disney.Movies').controller('moviesListCtrl', function($scope, $f
     // TODO: Sanitaze search query
 
     var filterMovies = function(items, query) {
-        return $filter('filter')(items, query);
+        $log.log('filterMovies: ', query);
+        return $filter('filter')(items, {title: query});
     };
 
     var sortBy = function(items, sort) {
         return $filter('orderBy')(items, sort);
     };
 
-    var getMoviesPaginated = function(items, limit) {
-        return $filter('limitTo')(items, limit);
+    var getMoviesPaginated = function(items, limit, begin) {
+        return $filter('limitTo')(items, limit, begin);
     };
 
-    moviesListCtrl.getMovies = function(query) {
+    moviesListCtrl.getMovies = function() {
         var tmpMovies;
 
         movieSrv.search().then(function (data) {
             tmpMovies = data.items;
 
-            if (query) {
-                tmpMovies = filterMovies(tmpMovies, query);
+            if ($scope.searchQuery) {
+                tmpMovies = filterMovies(tmpMovies, $scope.searchQuery);
             }
 
             tmpMovies = sortBy(tmpMovies, $scope.config.sort);
 
-            $scope.movies = getMoviesPaginated(tmpMovies, $scope.limit);
+            $scope.movies = getMoviesPaginated(tmpMovies, $scope.config.limit, pager);
 
             $scope.totalResults = tmpMovies.length;
         });
@@ -48,24 +50,32 @@ angular.module('disney.Movies').controller('moviesListCtrl', function($scope, $f
 
     $scope.$watch('searchQuery', function(currentQuery, last) {
         if (currentQuery !== last) {
-            if (currentQuery) {
-                moviesListCtrl.getMovies(currentQuery);
-            } else {
-                moviesListCtrl.getMovies();
-            }
+            moviesListCtrl.getMovies();
         }
     });
 
     $scope.$watch('config.sort', function(current, last) {
         if (current !== last) {
-            $log.log('sort 2;');
             moviesListCtrl.getMovies();
         }
     });
 
-    // $scope.$watch('currentPage', function(page) {
-    //     $log.log('currentPage: ', page);
-    // });
+    $scope.$watch('currentPage', function(current, last) {
+        if (current !== last) {
+            // START pager
+            if (current === 1) {
+                pager = 0;
+            } else if (current > last) {
+                pager += $scope.config.limit;
+            } else if (current < last) {
+                pager -= $scope.config.limit;
+            } else {
+                pager = 0;
+            }
+
+            moviesListCtrl.getMovies();
+        }
+    });
 
     moviesListCtrl.getMovies();
 

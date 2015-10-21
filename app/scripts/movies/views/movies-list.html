@@ -5,7 +5,7 @@
     <div class="col-sm-4" ng-if="movies">
         <span ng-bind="currentPage"></span>
         -
-        <span ng-bind="config.limit"></span>
+        <span ng-bind="movies.length"></span>
         of
         <span ng-bind="totalResults"></span>
         results
@@ -52,5 +52,5 @@
     </article>
 </main>
 <div class="pager">
-    <uib-pager total-items="totalResults" ng-model="currentPage"></uib-pager>
+    <uib-pager total-items="totalResults" items-per-page="config.limit" ng-model="currentPage"></uib-pager>
 </div>
