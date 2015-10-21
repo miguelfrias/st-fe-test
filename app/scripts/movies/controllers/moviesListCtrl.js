@@ -51,8 +51,6 @@ angular.module('disney.Movies').controller('moviesListCtrl', function($scope, $f
     };
 
     $scope.sort = function sort() {
-        $log.log('Sorting: ', $scope.config.sort.indexOf('-'));
-
         if ($scope.config.sortDirection === '+') {
             $scope.config.sortDirection = '-';
         } else {
