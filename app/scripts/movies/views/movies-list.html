@@ -17,6 +17,11 @@
             <option value="date">Date</option>
             <option value="title">Name</option>
         </select>
+        <span aria-hidden="true"
+            ng-click="sort()"
+            class="glyphicon cursor"
+            style="cursor: pointer"
+            ng-class="{'glyphicon-sort-by-attributes': config.sortDirection === '+', 'glyphicon-sort-by-attributes-alt': config.sortDirection === '-'}"></span>
     </div>
 </div>
 <main class="row module main">

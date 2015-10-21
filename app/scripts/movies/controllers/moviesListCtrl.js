@@ -10,6 +10,7 @@ angular.module('disney.Movies').controller('moviesListCtrl', function($scope, $f
     $scope.totalResults = 0;
     $scope.config = {
         limit: 5,
+        sortDirection: '+',
         sort: 'title'
     };
 
@@ -30,6 +31,7 @@ angular.module('disney.Movies').controller('moviesListCtrl', function($scope, $f
 
     moviesListCtrl.getMovies = function() {
         var tmpMovies;
+        var orderBy;
 
         movieSrv.search().then(function (data) {
             tmpMovies = data.items;
@@ -38,12 +40,26 @@ angular.module('disney.Movies').controller('moviesListCtrl', function($scope, $f
                 tmpMovies = filterMovies(tmpMovies, $scope.searchQuery);
             }
 
-            tmpMovies = sortBy(tmpMovies, $scope.config.sort);
+            orderBy = $scope.config.sortDirection + $scope.config.sort;
+
+            tmpMovies = sortBy(tmpMovies, orderBy);
 
             $scope.movies = getMoviesPaginated(tmpMovies, $scope.config.limit, pager);
 
             $scope.totalResults = tmpMovies.length;
         });
+    };
+
+    $scope.sort = function sort() {
+        $log.log('Sorting: ', $scope.config.sort.indexOf('-'));
+
+        if ($scope.config.sortDirection === '+') {
+            $scope.config.sortDirection = '-';
+        } else {
+            $scope.config.sortDirection = '+';
+        }
+
+        moviesListCtrl.getMovies();
     };
 
     $scope.getMovies = moviesListCtrl.getMovies;
